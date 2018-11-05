@@ -12,7 +12,7 @@
 				<!-- $taskのcontentを表示する -->
 
 				<!-- tasks.showへのリンクを作成。$task->idをリンクテキストに指定。routeの指定に合わせ、tasks/{id}にidというクラスで$task->idをセット。 -->
-				<li>{!! link_to_route('tasks.show', $task->id, ['text' => $task->id]) !!} : {{ $task->content }}</li>
+				<li>{!! link_to_route('tasks.show', $task->id, ['text' => $task->id]) !!} :  {{ $task->status }}：{{ $task->content }}</li>
 			@endforeach
 		</ul>
 	@endif

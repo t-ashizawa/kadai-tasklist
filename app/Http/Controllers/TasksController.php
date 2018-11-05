@@ -51,10 +51,15 @@ class TasksController extends Controller
     //POSTでtasks/にアクセスされた時の「新規タスクの登録処理」
     public function store(Request $request)
     {
-        $this->validate($request , [ 'content' => 'required|max:191' ]
-        );
+        $this->validate($request , [ 
+            'status' => 'required|max:10',
+            'content' => 'required|max:191' 
+        ]);
+        
         $task = new Task;
+        $task->status = $request->status;
         $task->content = $request->content;
+
         $task->save();
 
         return redirect('/');
@@ -103,10 +108,13 @@ class TasksController extends Controller
     //PUTでtasks/idにアクセスされた時の「タスク更新処理」
     public function update(Request $request, $id)
     {
-        $this->validate($request , [ 'content' => 'required|max:191' ]
-        );
-        
+        $this->validate($request , [ 
+            'status' => 'required|max:10',
+            'content' => 'required|max:191' 
+        ]);
+
         $task = Task::find($id);
+        $task->status = $request->status;
         $task->content = $request->content;
         $task->save();
 
